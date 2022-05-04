@@ -1,5 +1,27 @@
 {
-  "users" : [
+  "users": [
+    {
+      "email": "xolab@mail.ru",
+      "password": "$2a$10$MSJoX4PWL20t/VwnVeM3F.X521zGZtVHmGx/JAFKab1jFT2TC2b0m",
+      "id": 1
+    },
+    {
+      "email": "user@user.ru",
+      "password": "$2a$10$Cewxzb5S63lm5vCtYBqXYuIa8/9Lbgde80Qg97WoGe8iMIGCDsgby",
+      "id": 2
+    },
+    {
+      "email": "user123@user.ru",
+      "password": "$2a$10$if6XvwyXJMFyLoy6yDScKeP/u4hcXrjhJ2NBWQJd7iFuCMcukx3gy",
+      "id": 3
+    },
+    {
+      "email": "user4@mail.ru",
+      "password": "$2a$10$pgBLfboYYkWQuy9YDOuWvehb./86mXK9jYcD/.8zGHwcCxEybP6Um",
+      "id": 4
+    }
+  ],
+  "contacts": [
     {
       "id": 1,
       "name": "Leanne Graham",
