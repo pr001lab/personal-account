@@ -1,6 +1,7 @@
 export enum APIRoute {
   Login = '/login',
   Users = '/users',
+  Contacts = '/contacts',
 }
 
 export enum AppRoute {
@@ -19,4 +20,8 @@ export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum ParamNames {
+  SearchFullText = 'q',
 }

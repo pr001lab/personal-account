@@ -1,10 +1,16 @@
+import {DoDisturbOn} from '@mui/icons-material';
+import {Box, Button, Grid, Paper, TextField} from '@mui/material';
 import {FormEvent, useState} from 'react';
-import {Button, Form} from 'react-bootstrap';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import Loader from '../../components/loader/loader';
+import {StatusLoading} from '../../const';
 import {registerAction} from '../../store/user/api-actions';
+import {selectCheckAuthLoading, selectLoginLoading} from '../../store/user/selectors';
 
 function Login(): JSX.Element {
   const dispatch = useDispatch();
+  const loginLoading = useSelector(selectLoginLoading);
+  const checkAuthLoading = useSelector(selectCheckAuthLoading);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,48 +21,75 @@ function Login(): JSX.Element {
       login: email,
       password: password,
     }));
-
   };
 
-  return (
-    <div
-      style={{ height: '100vh' }}
-      className="d-flex justify-content-center align-items-center"
-    >
-      <div style={{ width: 300 }}>
-        <h1 className="text-center">Sign in</h1>
-        <Form onSubmit={handleFormSubmit}>
-          <Form.Group>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              onChange={(evt) => {
-                setEmail(evt.target.value);
-              }}
-            />
-          </Form.Group>
+  if ([StatusLoading.Idle, StatusLoading.Loading]
+    .includes(checkAuthLoading)
+    || [StatusLoading.Idle, StatusLoading.Loading]
+      .includes(checkAuthLoading)) {
+    return (
+      <Loader />
+    );
+  }
 
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(evt) => {
-                setPassword(evt.target.value);
-              }}
-            />
-          </Form.Group>
+  return (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
+      <Paper
+        className='paperStyle'
+        sx={{p: 4, width: 300}}
+        elevation={10}
+      >
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <DoDisturbOn sx={{ fontSize: 50, color: 'red' }}/>
+          <h2>Sign In</h2>
+        </Grid>
+        <form
+          onSubmit={handleFormSubmit}
+        >
+          <TextField
+            type="email"
+            label='Email address'
+            placeholder='Enter email'
+            fullWidth
+            required
+            autoFocus
+            onChange={(evt) => {
+              setEmail(evt.target.value);
+            }}
+          />
+          <TextField
+            sx={{mt: 2}}
+            type='password'
+            label='Password'
+            placeholder='Enter password'
+            fullWidth
+            required
+            onChange={(evt) => {
+              setPassword(evt.target.value);
+            }}
+          />
           <Button
-            variant="primary"
-            type="submit"
-            className="w-100 mt-3"
+            sx={{mt: 2}}
+            type='submit'
+            color='primary'
+            variant="contained"
+            fullWidth
           >
-          Sign in
+          Sign Up/Sign In
           </Button>
-        </Form>
-      </div>
-    </div>
+        </form>
+      </Paper>
+    </Box>
   );
 }
 
