@@ -1,18 +1,16 @@
 import {Close, SearchOutlined} from '@mui/icons-material';
 import {IconButton, TextField, Typography} from '@mui/material';
 
-
 type ComponentProps = {
   search: string;
   onSetSearch: (search: string) => void;
 }
 
 function SearchForm({search, onSetSearch}: ComponentProps): JSX.Element {
-
   return (
     <>
       <Typography variant="h5" component="h2" sx={{fontWeight: 600, mt: 3, mb: 2}}>
-      Search Form
+        Search Form
       </Typography>
       <TextField
         fullWidth

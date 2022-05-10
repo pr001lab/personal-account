@@ -5,6 +5,7 @@ export enum ActionType {
   LoadContactsRequest = 'data/loadContactsRequest',
   LoadContactsSuccess = 'data/loadContactsSuccess',
   LoadContactsFailure = 'data/loadContactsFailure',
+  AddContactSuccess = 'data/addContactSuccess',
   DeleteContactsRequest = 'data/deleteContactsRequest',
   DeleteContactsSuccess = 'data/deleteContactsSuccess',
   DeleteContactsFailure = 'data/deleteContactsFailure',
@@ -24,6 +25,14 @@ export const loadContactsFailure = createAction(
   ActionType.LoadContactsFailure, (error: string | null) => ({
     payload: {
       error,
+    },
+  }),
+);
+
+export const addContactSuccess = createAction(ActionType.AddContactSuccess, (result: boolean) => (
+  {
+    payload: {
+      result,
     },
   }),
 );

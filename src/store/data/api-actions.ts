@@ -3,6 +3,7 @@ import {APIRoute} from '../../const';
 import {ThunkActionResult} from '../../types/action';
 import {Contact, PostContact} from '../../types/contact';
 import {
+  addContactSuccess,
   deleteContactsFailure,
   deleteContactsRequest,
   deleteContactsSuccess,
@@ -31,12 +32,13 @@ export const fetchContactsAction = (params = {}): ThunkActionResult => (
   }
 );
 
-export const postContactAction = (contact: PostContact): ThunkActionResult => (
+export const addContactAction = (contact: PostContact): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     const baseUrl = APIRoute.Contacts;
     dispatch(loadContactsRequest());
     try {
       await api.post(baseUrl, contact);
+      dispatch(addContactSuccess(true));
       dispatch(fetchContactsAction());
     } catch (error: any) {
       dispatch(loadContactsFailure(error.toString()));
@@ -53,6 +55,7 @@ export const patchContactAction = (contact: Contact): ThunkActionResult => (
     dispatch(loadContactsRequest());
     try {
       await api.patch(`${baseUrl}/${contact.id}`, contact);
+      dispatch(addContactSuccess(true));
       dispatch(fetchContactsAction());
     } catch (error: any) {
       dispatch(loadContactsFailure(error.toString()));

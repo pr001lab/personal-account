@@ -2,8 +2,10 @@ import {AccountCircle, AlternateEmail, InsertEmoticon, LocalPhone, LocationCity}
 import {Box, Button, TextField, Typography} from '@mui/material';
 import {useEffect} from 'react';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
-import {useDispatch} from 'react-redux';
-import {patchContactAction, postContactAction} from '../../store/data/api-actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {addContactSuccess} from '../../store/data/actions';
+import {addContactAction, patchContactAction} from '../../store/data/api-actions';
+import {selectAddContactSuccess} from '../../store/data/selectors';
 import {Contact, PostContact} from '../../types/contact';
 
 const FORM_EMPTY_USER_MESSAGE = 'Данные не предоставлены';
@@ -29,6 +31,7 @@ function ContactForm({contactEditTable, onFormReset}: ComponentProps): JSX.Eleme
     },
   });
   const dispatch = useDispatch();
+  const addContactSuccessResult = useSelector(selectAddContactSuccess);
 
   useEffect(() => {
     if (contactEditTable !== undefined) {
@@ -44,6 +47,19 @@ function ContactForm({contactEditTable, onFormReset}: ComponentProps): JSX.Eleme
     }
   }, [contactEditTable, reset]);
 
+  useEffect(() => {
+    if (addContactSuccessResult) {
+      reset({
+        name: '',
+        username: '',
+        email: '',
+        city: '',
+        phone: '',
+      });
+    }
+    dispatch(addContactSuccess(false));
+  }, [addContactSuccessResult, dispatch, reset]);
+
   const handleFormSubmit: SubmitHandler<PostContact | Contact> = (data: {[key: string]: string | number}) => {
     Object.keys(data).forEach((key) => {
       if (data[key] === '') {
@@ -56,7 +72,7 @@ function ContactForm({contactEditTable, onFormReset}: ComponentProps): JSX.Eleme
       dispatch(patchContactAction(data as Contact));
     } else {
       const {id, ...postData} = data;
-      dispatch(postContactAction(postData as PostContact));
+      dispatch(addContactAction(postData as PostContact));
     }
   };
 
@@ -67,7 +83,7 @@ function ContactForm({contactEditTable, onFormReset}: ComponentProps): JSX.Eleme
 
   return (
     <>
-      <Typography variant="h5" component="h2" style={{fontWeight: 600}}>
+      <Typography variant="h5" component="h2" sx={{fontWeight: 600}}>
         Contact Form
       </Typography>
       <form onSubmit={handleSubmit(handleFormSubmit)}>

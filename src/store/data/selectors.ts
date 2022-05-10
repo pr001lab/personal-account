@@ -11,3 +11,6 @@ export const selectContactsLoading = (state: State): StatusLoading => (
 export const selectContactsLoadingError = (state: State): string | null => (
   state[NameSpace.Contacts].contactsLoadingError
 );
+export const selectAddContactSuccess = (state: State): boolean => (
+  state[NameSpace.Contacts].addContactSuccess
+);

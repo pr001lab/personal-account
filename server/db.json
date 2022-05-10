@@ -1,36 +1,20 @@
 {
   "users": [
     {
-      "email": "user@user.ru",
-      "password": "$2a$10$mA70q6hyqzOObRceXg.Ih.n.E6bY7Inj1jvC7Uq1fbYfdWYH6eKC6",
-      "id": 1
-    },
-    {
       "email": "admin@admin.ru",
       "password": "$2a$10$.qhlzGNY31h5eIB/LGdaz.iOA9eF/WlGvBTFYcRuLZUv2hKNCMpCy",
       "id": 2
+    },
+    {
+      "email": "user@user.ru",
+      "password": "$2a$10$LM2ZiPXON6Dd5J6Yyf8lj.1VsldlHy35VHVozV9uu0U1ZfEbTr6GO",
+      "id": 3
     }
   ],
   "contacts": [
     {
-      "id": 1,
-      "name": "Leanne Graham",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "city": "Gwenborough",
-      "phone": "1-770-736-8031 x56442"
-    },
-    {
-      "id": 2,
-      "name": "Ervin Howell",
-      "username": "Antonette",
-      "email": "Shanna@melissa.tv",
-      "city": "Wisokyburgh",
-      "phone": "010-692-6593 x09125"
-    },
-    {
       "id": 3,
-      "name": "Clementine Bauch",
+      "name": "Clementine Bauch II",
       "username": "Samantha",
       "email": "Nathan@yesenia.net",
       "city": "McKenziehaven",
@@ -104,9 +88,25 @@
       "name": "test",
       "username": "testUsername",
       "email": "test@test.ru",
-      "city": "Moscow",
+      "city": "Данные не предоставлены",
       "phone": "+11111111111",
       "id": 13
+    },
+    {
+      "name": "Test1",
+      "username": "testUsername",
+      "email": "test@test.ru",
+      "city": "Данные не предоставлены",
+      "phone": "+11111111111",
+      "id": 14
+    },
+    {
+      "name": "Test2",
+      "username": "testUsername",
+      "email": "test@test.ru",
+      "city": "Данные не предоставлены",
+      "phone": "+11111111111",
+      "id": 15
     }
   ],
   "etalon": [

@@ -1,15 +1,14 @@
 import {DoDisturbOn} from '@mui/icons-material';
-import {Box, Button, Grid, Paper, TextField} from '@mui/material';
+import {Box, Button, Grid, Paper, TextField, Typography} from '@mui/material';
 import {FormEvent, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Loader from '../../components/loader/loader';
 import {StatusLoading} from '../../const';
 import {registerAction} from '../../store/user/api-actions';
-import {selectCheckAuthLoading, selectLoginLoading} from '../../store/user/selectors';
+import {selectCheckAuthLoading} from '../../store/user/selectors';
 
 function Login(): JSX.Element {
   const dispatch = useDispatch();
-  const loginLoading = useSelector(selectLoginLoading);
   const checkAuthLoading = useSelector(selectCheckAuthLoading);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,7 +50,9 @@ function Login(): JSX.Element {
           alignItems="center"
         >
           <DoDisturbOn sx={{ fontSize: 50, color: 'red' }}/>
-          <h2>Sign In</h2>
+          <Typography variant="h5" component="h2" sx={{fontWeight: 600, mb: 4}}>
+            Sign In
+          </Typography>
         </Grid>
         <form
           onSubmit={handleFormSubmit}
@@ -85,7 +86,7 @@ function Login(): JSX.Element {
             variant="contained"
             fullWidth
           >
-          Sign Up/Sign In
+            Sign Up/Sign In
           </Button>
         </form>
       </Paper>
